@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+message Calculation {
+
+    enum Operation {
+        ADDICTION = 0;
+        SUBTRACTION = 1;
+        MULTIPLICATION = 2;
+        DIVISION = 3;
+    }
+
+    required Operation operation = 1;
+    repeated int32 number = 2;
+
+}
+
+message Ready {}
+
+service TaskManager {
+    rpc GetTask(Ready) returns (Calculation) {}
+}
