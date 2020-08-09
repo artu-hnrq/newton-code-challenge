@@ -6,12 +6,12 @@ k connect_client:
 
 b build:
 	python3 -m grpc_tools.protoc -I=src \
-		--python_out=src/proto \
-		--grpc_python_out=src/proto \
+		--python_out=src/protocol \
+		--grpc_python_out=src/protocol \
 		src/calculate.proto
 
 c clean:
-	find src/proto/ ! -name __init__.py -exec rm {} +
+	find src/protocol/ ! -name __init__.py -exec rm {} +
 
 i init:
 	sudo python3 -m pip install --upgrade pip virtualenv

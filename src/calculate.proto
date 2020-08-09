@@ -14,7 +14,9 @@ message Calculation {
 
 }
 
-message Ready {}
+message Ready {
+    optional int32 client_id = 1;
+}
 
 service TaskManager {
     rpc GetTask(Ready) returns (Calculation) {}

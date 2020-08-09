@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\"\x07\n\x05Ready20\n\x0bTaskManager\x12!\n\x07GetTask\x12\x06.Ready\x1a\x0c.Calculation\"\x00'
+  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\"\x1a\n\x05Ready\x12\x11\n\tclient_id\x18\x01 \x01(\x05\x32\x30\n\x0bTaskManager\x12!\n\x07GetTask\x12\x06.Ready\x1a\x0c.Calculation\"\x00'
 )
 
 
@@ -108,6 +108,13 @@ _READY = _descriptor.Descriptor(
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='client_id', full_name='Ready.client_id', index=0,
+      number=1, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
   ],
   extensions=[
   ],
@@ -121,7 +128,7 @@ _READY = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=173,
-  serialized_end=180,
+  serialized_end=199,
 )
 
 _CALCULATION.fields_by_name['operation'].enum_type = _CALCULATION_OPERATION
@@ -153,8 +160,8 @@ _TASKMANAGER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=182,
-  serialized_end=230,
+  serialized_start=201,
+  serialized_end=249,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetTask',
