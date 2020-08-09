@@ -50,23 +50,32 @@ def start_server():
     server.wait_for_termination()
 
 
-def connect_client():
+def estabilish_connection():
     channel = grpc.insecure_channel(f"localhost:{SERVER_PORT}")
-    stub = TaskManagerStub(channel)
+    return TaskManagerStub(channel)
 
+
+def connect_client():
+    stub = estabilish_connection()
     response = stub.GetTask(Ready(client_id=0))
 
     print(calculate(response))
 
 
-def request_calculation():
-    channel = grpc.insecure_channel(f"localhost:{SERVER_PORT}")
-    stub = TaskManagerStub(channel)
+def request_calculation(operation, args):
+    stub = estabilish_connection()
+
+    operation = {
+        'add': Calculation.Operation.ADDICTION,
+        'sub': Calculation.Operation.SUBTRACTION,
+        'mul': Calculation.Operation.MULTIPLICATION,
+        'div': Calculation.Operation.DIVISION
+    }[operation]
 
     response = stub.Request(
         Calculation(
-            operation=0,
-            number=[5,5]
+            operation=operation,
+            number=args
         )
     )
 

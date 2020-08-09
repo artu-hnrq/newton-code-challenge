@@ -1,13 +1,25 @@
 # [Newton Labs][newton_labs] `code-challenge`
+
+[![](https://img.shields.io/pypi/pyversions/newton-code-challenge.svg)][PyPI]
+[![](https://img.shields.io/github.com/artu-hnrq/newton-code-challenge.svg)](https://github.com/artu-hnrq/newton-code-challenge/blob/master/LICENSE)
+[![](https://img.shields.io/pypi/v/newton-code-challenge.svg)][PyPI]
+
 I worked in this project to demonstrate skills in developing backends with Python. It consists in a simple _task buffer_ that uses [Google's RPC][gRPC] open source library to efficiently ensure serialized data communication between several distributed applications.
 
 The proposal was develop a system consisting in a _server_ and multiple _clients_. The server should receive requests and queue them, allowing clients to connect with it and get them to be executed.
+
+## Getting started
+To take advantage of all develop and distribution convenience, it was made a python package, thus it can be easily installed from [PyPI][PyPI] running:
+```
+pip install newton-code-challenge
+```
 
 
 [newton_labs]: https://www.linkedin.com/company/newton-ai/
 [grpc]: https://github.com/grpc/grpc
 [gRPC]: https://en.wikipedia.org/wiki/GRPC
 [protobuf]: https://pt.wikipedia.org/wiki/Protocol_Buffers
+[PyPI]: https://pypi.org/project/newton-code-challenge
 
 
 ### Some used references
