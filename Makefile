@@ -4,6 +4,9 @@ s start_server:
 k connect_client:
 	python3 -m src.client
 
+r request_calculation:
+	python3 -m src.request
+
 b build:
 	python3 -m grpc_tools.protoc -I=src \
 		--python_out=src/protocol \

@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\"\x1a\n\x05Ready\x12\x11\n\tclient_id\x18\x01 \x01(\x05\x32\x30\n\x0bTaskManager\x12!\n\x07GetTask\x12\x06.Ready\x1a\x0c.Calculation\"\x00'
+  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\"\x1a\n\x05Ready\x12\x11\n\tclient_id\x18\x01 \x01(\x05\"\x1b\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t2V\n\x0bTaskManager\x12$\n\x07Request\x12\x0c.Calculation\x1a\t.Response\"\x00\x12!\n\x07GetTask\x12\x06.Ready\x1a\x0c.Calculation\"\x00'
 )
 
 
@@ -131,10 +131,43 @@ _READY = _descriptor.Descriptor(
   serialized_end=199,
 )
 
+
+_RESPONSE = _descriptor.Descriptor(
+  name='Response',
+  full_name='Response',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='message', full_name='Response.message', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=201,
+  serialized_end=228,
+)
+
 _CALCULATION.fields_by_name['operation'].enum_type = _CALCULATION_OPERATION
 _CALCULATION_OPERATION.containing_type = _CALCULATION
 DESCRIPTOR.message_types_by_name['Calculation'] = _CALCULATION
 DESCRIPTOR.message_types_by_name['Ready'] = _READY
+DESCRIPTOR.message_types_by_name['Response'] = _RESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 Calculation = _reflection.GeneratedProtocolMessageType('Calculation', (_message.Message,), {
@@ -151,6 +184,13 @@ Ready = _reflection.GeneratedProtocolMessageType('Ready', (_message.Message,), {
   })
 _sym_db.RegisterMessage(Ready)
 
+Response = _reflection.GeneratedProtocolMessageType('Response', (_message.Message,), {
+  'DESCRIPTOR' : _RESPONSE,
+  '__module__' : 'calculate_pb2'
+  # @@protoc_insertion_point(class_scope:Response)
+  })
+_sym_db.RegisterMessage(Response)
+
 
 
 _TASKMANAGER = _descriptor.ServiceDescriptor(
@@ -160,13 +200,23 @@ _TASKMANAGER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=201,
-  serialized_end=249,
+  serialized_start=230,
+  serialized_end=316,
   methods=[
+  _descriptor.MethodDescriptor(
+    name='Request',
+    full_name='TaskManager.Request',
+    index=0,
+    containing_service=None,
+    input_type=_CALCULATION,
+    output_type=_RESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
   _descriptor.MethodDescriptor(
     name='GetTask',
     full_name='TaskManager.GetTask',
-    index=0,
+    index=1,
     containing_service=None,
     input_type=_READY,
     output_type=_CALCULATION,

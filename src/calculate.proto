@@ -18,6 +18,11 @@ message Ready {
     optional int32 client_id = 1;
 }
 
+message Response {
+    optional string message = 1;
+}
+
 service TaskManager {
+    rpc Request(Calculation) returns (Response) {}
     rpc GetTask(Ready) returns (Calculation) {}
 }

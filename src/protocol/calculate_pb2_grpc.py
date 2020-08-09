@@ -14,6 +14,11 @@ class TaskManagerStub(object):
         Args:
             channel: A grpc.Channel.
         """
+        self.Request = channel.unary_unary(
+                '/TaskManager/Request',
+                request_serializer=calculate__pb2.Calculation.SerializeToString,
+                response_deserializer=calculate__pb2.Response.FromString,
+                )
         self.GetTask = channel.unary_unary(
                 '/TaskManager/GetTask',
                 request_serializer=calculate__pb2.Ready.SerializeToString,
@@ -24,6 +29,12 @@ class TaskManagerStub(object):
 class TaskManagerServicer(object):
     """Missing associated documentation comment in .proto file."""
 
+    def Request(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def GetTask(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -33,6 +44,11 @@ class TaskManagerServicer(object):
 
 def add_TaskManagerServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Request': grpc.unary_unary_rpc_method_handler(
+                    servicer.Request,
+                    request_deserializer=calculate__pb2.Calculation.FromString,
+                    response_serializer=calculate__pb2.Response.SerializeToString,
+            ),
             'GetTask': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTask,
                     request_deserializer=calculate__pb2.Ready.FromString,
@@ -47,6 +63,23 @@ def add_TaskManagerServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class TaskManager(object):
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Request(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/TaskManager/Request',
+            calculate__pb2.Calculation.SerializeToString,
+            calculate__pb2.Response.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
     def GetTask(request,
