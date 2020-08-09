@@ -1,5 +1,10 @@
 syntax = "proto2";
 
+service TaskManager {
+    rpc Request(Calculation) returns (Response) {}
+    rpc GetTask(Client) returns (Task) {}
+}
+
 message Calculation {
 
     enum Operation {
@@ -14,15 +19,14 @@ message Calculation {
 
 }
 
-message Ready {
-    optional int32 client_id = 1;
+message Task {
+    repeated Calculation work = 1;
+}
+
+message Client {
+    optional string name = 1;
 }
 
 message Response {
     optional string message = 1;
-}
-
-service TaskManager {
-    rpc Request(Calculation) returns (Response) {}
-    rpc GetTask(Ready) returns (Calculation) {}
 }

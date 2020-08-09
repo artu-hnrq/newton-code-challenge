@@ -1,9 +1,12 @@
 import grpc
 from concurrent import futures
 from operator import add, sub, mul, truediv
+import logging
 
-from .calculate_pb2 import Calculation, Ready, Response
+from .calculate_pb2 import Calculation, Task, Client, Response
 from .calculate_pb2_grpc import TaskManagerServicer as Servicer, TaskManagerStub, add_TaskManagerServicer_to_server
+
+logging.basicConfig(level=logging.INFO,format='%(levelname)s: %(message)s')
 
 def calculate(calculation):
     result = calculation.number[0]
@@ -20,50 +23,58 @@ def calculate(calculation):
     return result
 
 class TaskManagerServicer(Servicer):
-    tasks = []
+    tasklist = []
 
     def Request(self, calculation, context):
-        self.tasks.append(calculation)
-        response = Response()
-        response.message = f"New calculation requested: {str(calculation)}"
-        [print(task) for task in self.tasks]
+        self.tasklist.append(calculation)
+
+        message = "New calculation queued:\n{}".format(str(calculation))
+        logging.info(message)
+        response = Response(message=message)
+
         return response
 
-    def GetTask(self, request, context):
-        print(request)
-        task = self.tasks.pop(0)
+    def GetTask(self, client, context):
+        logging.info(f"{client.name} requested a task")
+
+        task = Task()
+        if len(self.tasklist) > 0:
+            task.work.append(self.tasklist.pop(0))
+
         return task
 
 
 
-
-SERVER_PORT = 5000
-
-def start_server():
+def start_server(port=5000):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     add_TaskManagerServicer_to_server(TaskManagerServicer(), server)
 
-    server.add_insecure_port(f"[::]:{SERVER_PORT}")
-    print(f"server listening port {SERVER_PORT}")
+    server.add_insecure_port(f"[::]:{port}")
+    print(f"server listening port {port}")
 
     server.start()
     server.wait_for_termination()
 
 
-def estabilish_connection():
-    channel = grpc.insecure_channel(f"localhost:{SERVER_PORT}")
+def estabilish_connection(port=5000):
+    channel = grpc.insecure_channel(f"localhost:{port}")
     return TaskManagerStub(channel)
 
 
-def connect_client():
-    stub = estabilish_connection()
-    response = stub.GetTask(Ready(client_id=0))
+def connect_client(name, port=5000):
+    stub = estabilish_connection(port)
 
-    print(calculate(response))
+    task = stub.GetTask(Client(name=name))
+    if task.work:
+        for work in task.work:
+            logging.info(f"The result is {calculate(work)}")
+    else:
+        logging.info("There's no more work to be done. Go get some rest!")
 
 
-def request_calculation(operation, args):
-    stub = estabilish_connection()
+
+def request_calculation(operation, args, port=5000):
+    stub = estabilish_connection(port)
 
     operation = {
         'add': Calculation.Operation.ADDICTION,
@@ -79,4 +90,4 @@ def request_calculation(operation, args):
         )
     )
 
-    print(response)
+    logging.info(response.message)

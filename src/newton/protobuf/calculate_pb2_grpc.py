@@ -21,8 +21,8 @@ class TaskManagerStub(object):
                 )
         self.GetTask = channel.unary_unary(
                 '/TaskManager/GetTask',
-                request_serializer=calculate__pb2.Ready.SerializeToString,
-                response_deserializer=calculate__pb2.Calculation.FromString,
+                request_serializer=calculate__pb2.Client.SerializeToString,
+                response_deserializer=calculate__pb2.Task.FromString,
                 )
 
 
@@ -51,8 +51,8 @@ def add_TaskManagerServicer_to_server(servicer, server):
             ),
             'GetTask': grpc.unary_unary_rpc_method_handler(
                     servicer.GetTask,
-                    request_deserializer=calculate__pb2.Ready.FromString,
-                    response_serializer=calculate__pb2.Calculation.SerializeToString,
+                    request_deserializer=calculate__pb2.Client.FromString,
+                    response_serializer=calculate__pb2.Task.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -93,7 +93,7 @@ class TaskManager(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/TaskManager/GetTask',
-            calculate__pb2.Ready.SerializeToString,
-            calculate__pb2.Calculation.FromString,
+            calculate__pb2.Client.SerializeToString,
+            calculate__pb2.Task.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

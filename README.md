@@ -14,6 +14,14 @@ To take advantage of all develop and distribution convenience, it was made a pyt
 pip install newton-code-challenge
 ```
 
+## CLI Usage
+The package exposes `newton` command line interface, which brings the following subcommands:
+
+`start-server`: It starts project's gRPC server
+
+`request-calculation`: It queues a calculation in server's tasklist
+
+`conncet-client`: It gets server's next task and execute it
 
 [newton_labs]: https://www.linkedin.com/company/newton-ai/
 [grpc]: https://github.com/grpc/grpc
@@ -24,5 +32,9 @@ pip install newton-code-challenge
 
 ### Some used references
 1. [Protocol Buffers - Google Developers](https://developers.google.com/protocol-buffers/docs/pythontutorial)
-2. [A simplified guide to gRPC in Python](https://www.semantics3.com/blog/a-simplified-guide-to-grpc-in-python-6c4e25f0c506/)
-3. [gRPC empty request or response - Stack Overflow](https://stackoverflow.com/questions/31768665/can-i-define-a-grpc-call-with-a-null-request-or-response)
+2. [gRPC official Python tutorial](https://grpc.io/docs/languages/python/basics/)
+3. [A simplified guide to gRPC in Python](https://www.semantics3.com/blog/a-simplified-guide-to-grpc-in-python-6c4e25f0c506/)
+
+### Discussions
+- [gRPC empty request or response - Stack Overflow](https://stackoverflow.com/questions/31768665/can-i-define-a-grpc-call-with-a-null-request-or-response)
+- [gRPC optional fields emptiness](https://stackoverflow.com/questions/51918871/check-if-a-field-has-been-set-in-protocol-buffer-3)
