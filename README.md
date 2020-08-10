@@ -27,7 +27,9 @@ The package exposes `newton` command line interface, which brings the following 
 
 `request-calculation`: It queues a calculation in server's tasklist
 
-`conncet-client`: It gets server's next task and execute it
+`connect-client`: It gets server's next task and execute it
+
+`present-db`: It prompts server's task resolution history
 
 
 

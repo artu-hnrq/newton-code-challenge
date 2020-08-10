@@ -5,6 +5,8 @@ import logging
 import click
 
 
+DEFAULT_PORT = 5000
+
 @click.group()
 @click.pass_context
 def main(self):
@@ -12,16 +14,16 @@ def main(self):
 
 
 @main.command()
-@click.option('-p', '--port', default=5000)
+@click.option('-p', '--port', default=DEFAULT_PORT)
 def start_server(port):
-    sgbd.create_db()
+    sgbd.create_table(port)
     server.start(port)
 
 
 @main.command()
 @click.argument('operation', type=click.Choice(['add', 'sub', 'mul', 'div']))
 @click.argument('args', nargs=2, type=click.INT)
-@click.option('-p', '--port', default=5000)
+@click.option('-p', '--port', default=DEFAULT_PORT)
 def request_calculation(operation, args, port):
     response = rpc_api.request_calculation(operation, args, port)
     logging.info(response)
@@ -29,7 +31,7 @@ def request_calculation(operation, args, port):
 
 @main.command()
 @click.option('-n', '--name')
-@click.option('-p', '--port', default=5000)
+@click.option('-p', '--port', default=DEFAULT_PORT)
 def connect_client(name, port):
     task = rpc_api.get_task(name, port)
     if task.work:
@@ -37,6 +39,17 @@ def connect_client(name, port):
     else:
         logging.info("There's no task to be done, go get some rest!")
 
+
+@main.command()
+@click.argument('port', default=DEFAULT_PORT)
+def present_db(port):
+    try:
+        query = sgbd.select(port)
+
+        for row in query:
+            logging.info('\t'.join(row))
+    except ValueError as e:
+        logging.critical(e)
 
 cli = click.CommandCollection(sources=[main])
 

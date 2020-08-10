@@ -20,8 +20,9 @@ message Calculation {
 }
 
 message Task {
-    required string id = 1;
-    repeated Calculation work = 2;
+    required int32 server = 1;
+    required string id = 2;
+    repeated Calculation work = 3;
 }
 
 message Client {

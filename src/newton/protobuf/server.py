@@ -7,7 +7,7 @@ from .calculate_pb2_grpc import add_TaskManagerServicer_to_server, TaskManagerSt
 
 def start(port=5000):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    add_TaskManagerServicer_to_server(TaskManagerServicer(), server)
+    add_TaskManagerServicer_to_server(TaskManagerServicer(port), server)
 
     server.add_insecure_port(f"[::]:{port}")
     print(f"server listening port {port}")

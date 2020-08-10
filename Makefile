@@ -7,7 +7,12 @@ k connect_client:
 
 r request_calculation:
 	newton request-calculation add 5 6
-	newton request-calculation mul 4 3
+	newton request-calculation sub 8 3
+	newton request-calculation mul 4 13
+	newton request-calculation div 4 0
+
+p present_db:
+	newton present-db
 
 protobuf= src/newton/protobuf
 

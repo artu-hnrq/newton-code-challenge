@@ -8,6 +8,10 @@ logging.basicConfig(level=logging.INFO,format='%(levelname)s: %(message)s')
 class TaskManagerServicer(Servicer):
     tasklist = []
 
+    def __init__(self, id):
+        self.id = id
+        super(Servicer, self).__init__()
+
     def Request(self, calculation, context):
         self.tasklist.append(calculation)
 
@@ -20,8 +24,7 @@ class TaskManagerServicer(Servicer):
     def GetTask(self, client, context):
         logging.info(f"{client.name} requested a task")
 
-        task = Task()
-        task.id = uuid4().hex
+        task = Task(server=self.id, id=uuid4().hex)
         if len(self.tasklist) > 0:
             task.work.append(self.tasklist.pop(0))
 

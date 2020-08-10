@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\".\n\x04Task\x12\n\n\x02id\x18\x01 \x02(\t\x12\x1a\n\x04work\x18\x02 \x03(\x0b\x32\x0c.Calculation\"\x16\n\x06\x43lient\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1b\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t2P\n\x0bTaskManager\x12$\n\x07Request\x12\x0c.Calculation\x1a\t.Response\"\x00\x12\x1b\n\x07GetTask\x12\x07.Client\x1a\x05.Task\"\x00'
+  serialized_pb=b'\n\x0f\x63\x61lculate.proto\"\x97\x01\n\x0b\x43\x61lculation\x12)\n\toperation\x18\x01 \x02(\x0e\x32\x16.Calculation.Operation\x12\x0e\n\x06number\x18\x02 \x03(\x05\"M\n\tOperation\x12\r\n\tADDICTION\x10\x00\x12\x0f\n\x0bSUBTRACTION\x10\x01\x12\x12\n\x0eMULTIPLICATION\x10\x02\x12\x0c\n\x08\x44IVISION\x10\x03\">\n\x04Task\x12\x0e\n\x06server\x18\x01 \x02(\x05\x12\n\n\x02id\x18\x02 \x02(\t\x12\x1a\n\x04work\x18\x03 \x03(\x0b\x32\x0c.Calculation\"\x16\n\x06\x43lient\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x1b\n\x08Response\x12\x0f\n\x07message\x18\x01 \x01(\t2P\n\x0bTaskManager\x12$\n\x07Request\x12\x0c.Calculation\x1a\t.Response\"\x00\x12\x1b\n\x07GetTask\x12\x07.Client\x1a\x05.Task\"\x00'
 )
 
 
@@ -109,15 +109,22 @@ _TASK = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='Task.id', index=0,
-      number=1, type=9, cpp_type=9, label=2,
+      name='server', full_name='Task.server', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='Task.id', index=1,
+      number=2, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
     _descriptor.FieldDescriptor(
-      name='work', full_name='Task.work', index=1,
-      number=2, type=11, cpp_type=10, label=3,
+      name='work', full_name='Task.work', index=2,
+      number=3, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -135,7 +142,7 @@ _TASK = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=173,
-  serialized_end=219,
+  serialized_end=235,
 )
 
 
@@ -166,8 +173,8 @@ _CLIENT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=221,
-  serialized_end=243,
+  serialized_start=237,
+  serialized_end=259,
 )
 
 
@@ -198,8 +205,8 @@ _RESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=245,
-  serialized_end=272,
+  serialized_start=261,
+  serialized_end=288,
 )
 
 _CALCULATION.fields_by_name['operation'].enum_type = _CALCULATION_OPERATION
@@ -248,8 +255,8 @@ _TASKMANAGER = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=274,
-  serialized_end=354,
+  serialized_start=290,
+  serialized_end=370,
   methods=[
   _descriptor.MethodDescriptor(
     name='Request',

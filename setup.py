@@ -13,7 +13,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name = 'newton-code-challenge',
-    version = '0.7.1',
+    version = '0.8.1',
     author = 'artu-hnrq',
     author_email = "Arthur Henrique Della Fraga <Arthur.Henrique.Della.Fraga@gmail.com>",
     url = "https://github.com/artu-hnrq/newton-code-challenge",
