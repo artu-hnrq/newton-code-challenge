@@ -38,7 +38,7 @@ setuptools.setup(
 
     entry_points={
         "console_scripts": [
-            "newton = newton.cli:main",
+            "newton = newton:main",
         ],
     }
 )

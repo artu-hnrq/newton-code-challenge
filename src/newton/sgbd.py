@@ -2,6 +2,7 @@ import sqlite3
 
 DB_NAME = 'newton.db'
 
+
 def create_table(id):
     conn = sqlite3.connect(DB_NAME)
     conn.execute(
@@ -15,6 +16,7 @@ def create_table(id):
     )
     conn.close()
 
+
 def insert(server, id, func, result):
     conn = sqlite3.connect(DB_NAME)
     conn.execute(
@@ -24,6 +26,7 @@ def insert(server, id, func, result):
     )
     conn.commit()
     conn.close()
+
 
 def select(id):
     conn = sqlite3.connect(DB_NAME)

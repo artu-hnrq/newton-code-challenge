@@ -2,6 +2,7 @@ from operator import add, sub, mul, truediv
 import logging
 from . import sgbd
 
+
 def execute(task):
     for calculation in task.work:
         func, result = calculate(calculation)
@@ -14,10 +15,10 @@ def calculate(calculation):
     result = calculation.number[0]
 
     operation, operator = {
-        calculation.Operation.ADDICTION: (add, ' + '),
-        calculation.Operation.SUBTRACTION: (sub, ' - '),
-        calculation.Operation.MULTIPLICATION: (mul, ' * '),
-        calculation.Operation.DIVISION: (truediv, ' / ')
+        calculation.Operation.ADDICTION: (add, '+'),
+        calculation.Operation.SUBTRACTION: (sub, '-'),
+        calculation.Operation.MULTIPLICATION: (mul, '*'),
+        calculation.Operation.DIVISION: (truediv, '/')
     }[calculation.operation]
 
     try:

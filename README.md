@@ -37,6 +37,7 @@ The package exposes `newton` command line interface, which brings the following 
 1. [Protocol Buffers - Google Developers](https://developers.google.com/protocol-buffers/docs/pythontutorial)
 2. [gRPC official Python tutorial](https://grpc.io/docs/languages/python/basics/)
 3. [A simplified guide to gRPC in Python](https://www.semantics3.com/blog/a-simplified-guide-to-grpc-in-python-6c4e25f0c506/)
+4. [Another cool step-by-step gRPC tutorial](https://rollout.io/blog/using-grpc-in-python/)
 
 ### Discussions
 - [gRPC empty request or response - Stack Overflow](https://stackoverflow.com/questions/31768665/can-i-define-a-grpc-call-with-a-null-request-or-response)

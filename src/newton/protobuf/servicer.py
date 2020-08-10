@@ -3,8 +3,6 @@ from uuid import uuid4
 from .calculate_pb2 import Task, Response
 from .calculate_pb2_grpc import TaskManagerServicer as Servicer
 
-logging.basicConfig(level=logging.INFO,format='%(levelname)s: %(message)s')
-
 class TaskManagerServicer(Servicer):
     tasklist = []
 
@@ -15,7 +13,7 @@ class TaskManagerServicer(Servicer):
     def Request(self, calculation, context):
         self.tasklist.append(calculation)
 
-        message = "New calculation queued:\n{}".format(str(calculation))
+        message = f"New calculation queued: {len(self.tasklist)} in total"
         logging.info(message)
         response = Response(message=message)
 
