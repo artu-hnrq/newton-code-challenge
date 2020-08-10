@@ -1,7 +1,7 @@
 # [Newton Labs][newton_labs] `code-challenge`
 
 [![](https://img.shields.io/pypi/pyversions/newton-code-challenge.svg)][PyPI]
-[![](https://img.shields.io/github.com/artu-hnrq/newton-code-challenge.svg)](https://github.com/artu-hnrq/newton-code-challenge/blob/master/LICENSE)
+[![](https://img.shields.io/github/license/artu-hnrq/newton-code-challenge.svg)](https://github.com/artu-hnrq/newton-code-challenge/blob/master/LICENSE)
 [![](https://img.shields.io/pypi/v/newton-code-challenge.svg)][PyPI]
 
 I worked in this project to demonstrate skills in developing backends with Python. It consists in a simple _task buffer_ that uses [Google's RPC][gRPC] open source library to efficiently ensure serialized data communication between several distributed applications.

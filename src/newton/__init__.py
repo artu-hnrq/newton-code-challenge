@@ -1,6 +1,6 @@
 from .protobuf import server, rpc_api
 from . import model
-from . import sgbd
+from . import dbms
 import logging
 import click
 
@@ -16,8 +16,11 @@ def main(self):
 @main.command()
 @click.option('-p', '--port', default=DEFAULT_PORT)
 def start_server(port):
-    sgbd.create_table(port)
-    server.start(port)
+    try:
+        dbms.create_table(port)
+        server.start(port)
+    except Exception e:
+        logging.critical(f"Something went wrong: {e}")
 
 
 @main.command()
@@ -25,34 +28,41 @@ def start_server(port):
 @click.argument('args', nargs=2, type=click.INT)
 @click.option('-p', '--port', default=DEFAULT_PORT)
 def request_calculation(operation, args, port):
-    response = rpc_api.request_calculation(operation, args, port)
-    logging.info(response)
+    try:
+        response = rpc_api.request_calculation(operation, args, port)
+        logging.info(response)
+    except:
+        logging.warning(f"There's no server running at port {port}")
 
 
 @main.command()
 @click.option('-n', '--name')
 @click.option('-p', '--port', default=DEFAULT_PORT)
 def connect_client(name, port):
-    task = rpc_api.get_task(name, port)
-    if task.work:
-        model.execute(task)
-    else:
-        logging.info("There's no task to be done, go get some rest!")
+    try:
+        task = rpc_api.get_task(name, port)
+
+        if task.work:
+            model.execute(task)
+        else:
+            logging.info("There's no task to be done, go get some rest!")
+
+    except:
+        logging.warning(f"There's no server running at port {port}")
 
 
 @main.command()
 @click.argument('port', default=DEFAULT_PORT)
 def present_db(port):
     try:
-        query = sgbd.select(port)
+        query = dbms.select(port)
 
         logging.info('\t'.join(['ID \t\t\t\t', 'FUNC', 'RESULT']))
         for row in query:
             logging.info('\t'.join(row))
-    except ValueError as e:
-        logging.critical(e)
+    except:
+        logging.critical(f"There's no record of a server with id {port}")
 
-cli = click.CommandCollection(sources=[main])
 
 if __name__ == '__main__':
     main()

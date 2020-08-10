@@ -1,6 +1,6 @@
 from operator import add, sub, mul, truediv
 import logging
-from . import sgbd
+from . import dbms
 
 
 def execute(task):
@@ -8,7 +8,7 @@ def execute(task):
         func, result = calculate(calculation)
         logging.info(f"Calculation executed: {func} = {result}")
 
-    sgbd.insert(task.server, task.id, func, result)
+    dbms.insert(task.server, task.id, func, result)
 
 
 def calculate(calculation):

@@ -16,6 +16,6 @@ def start(port=5000):
     server.wait_for_termination()
 
 
-def get_connection(port=5000):
+def connect(port=5000):
     channel = grpc.insecure_channel(f"localhost:{port}")
     return TaskManagerStub(channel)

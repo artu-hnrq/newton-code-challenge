@@ -1,5 +1,4 @@
 s start_server:
-	rm -f newton.db
 	newton start-server
 
 k connect_client:
@@ -13,6 +12,9 @@ r request_calculation:
 
 p present_db:
 	newton present-db
+
+e example:
+	bash -i src/example.sh
 
 protobuf= src/newton/protobuf
 

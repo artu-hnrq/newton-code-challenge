@@ -1,8 +1,8 @@
-from .server import get_connection
+from . import server
 from .calculate_pb2 import Calculation, Client
 
 def request_calculation(operation, args, port):
-    conn = get_connection(port)
+    conn = server.connect(port)
 
     operation = {
         'add': Calculation.Operation.ADDICTION,
@@ -22,7 +22,7 @@ def request_calculation(operation, args, port):
 
 
 def get_task(name, port):
-    conn = get_connection(port)
+    conn = server.connect(port)
 
     task = conn.GetTask(
         Client(

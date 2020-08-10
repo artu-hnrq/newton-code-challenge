@@ -5,6 +5,7 @@ DB_NAME = 'newton.db'
 
 def create_table(id):
     conn = sqlite3.connect(DB_NAME)
+    conn.execute(f"DROP TABLE IF EXISTS SERVER_{id};")
     conn.execute(
         f"""
         CREATE TABLE SERVER_{id} (
@@ -31,12 +32,8 @@ def insert(server, id, func, result):
 def select(id):
     conn = sqlite3.connect(DB_NAME)
 
-    try:
-        query = conn.execute(f"SELECT ID, FUNC, RESULT FROM SERVER_{id}")
-        query = [list(row) for row in query]
-    except sqlite3.OperationalError:
-        raise ValueError(f"There's no record of a server with id {id}")
+    query = conn.execute(f"SELECT ID, FUNC, RESULT FROM SERVER_{id}")
+    query = [list(row) for row in query]
 
     conn.close()
-
     return query
