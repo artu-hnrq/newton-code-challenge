@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import setuptools
 
-with open('README.md') as f:
+with open('DESCRIPTION.md') as f:
     long_description = f.read()
 
 with open('requirements.txt') as f:
@@ -10,7 +10,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name = 'newton-code-challenge',
-    version = '0.9.4',
+    version = '1.0.0',
     author = 'artu-hnrq',
     author_email = "Arthur Henrique Della Fraga <Arthur.Henrique.Della.Fraga@gmail.com>",
     url = "https://github.com/artu-hnrq/newton-code-challenge",

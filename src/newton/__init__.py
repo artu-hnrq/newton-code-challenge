@@ -11,7 +11,7 @@ def main(self):
     pass
 
 
-@main.command()
+@main.command(help="start project's gRPC server")
 @click.option('-p', '--port', default=DEFAULT_PORT)
 def start_server(port):
     try:
@@ -21,7 +21,7 @@ def start_server(port):
         logging.critical(f"Something went wrong: {e}")
 
 
-@main.command()
+@main.command(help="queue a calculation in server's tasklist")
 @click.argument('operation', type=click.Choice(['add', 'sub', 'mul', 'div']))
 @click.argument('args', nargs=2, type=click.INT)
 @click.option('-p', '--port', default=DEFAULT_PORT)
@@ -33,7 +33,7 @@ def request_calculation(operation, args, port):
         logging.warning(f"There's no server running at port {port}")
 
 
-@main.command()
+@main.command(help="ask server for a task and execute it")
 @click.option('-n', '--name')
 @click.option('-p', '--port', default=DEFAULT_PORT)
 def connect_client(name, port):
@@ -49,7 +49,7 @@ def connect_client(name, port):
         logging.warning(f"There's no server running at port {port}")
 
 
-@main.command()
+@main.command(help="prompt server's task resolution history")
 @click.argument('port', default=DEFAULT_PORT)
 def present_db(port):
     try:
