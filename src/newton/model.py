@@ -1,9 +1,13 @@
-import logging
 from operator import add, sub, mul, truediv
+import logging
+from . import sgbd
 
-def execute(calculations):
-    for calculation in calculations:
-        logging.info(f"Calculation executed: {calculate(calculation)}")
+def execute(task):
+    for calculation in task.work:
+        result = calculate(calculation)
+        logging.info(f"Calculation executed: {result}")
+
+    sgbd.insert(task.id, str(task.work[0]), result)
 
 
 def calculate(calculation):
@@ -19,3 +23,16 @@ def calculate(calculation):
         result = operation(result, n)
 
     return result
+
+def create_db():
+    conn = sqlite3.connect('newton.db')
+    conn.execute(
+        '''
+        CREATE TABLE TASK (
+            ID INT PRIMARY KEY NOT NULL,
+            FUNC CHAR(50)    NOT NULL,
+            RESULT CHAR(50) NOT NULL
+        );
+        '''
+    )
+    conn.close()

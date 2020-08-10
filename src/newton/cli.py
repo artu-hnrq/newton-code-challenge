@@ -1,5 +1,6 @@
 from .protobuf import server, rpc_api
 from . import model
+from . import sgbd
 import logging
 import click
 
@@ -13,6 +14,7 @@ def main(self):
 @main.command()
 @click.option('-p', '--port', default=5000)
 def start_server(port):
+    sgbd.create_db()
     server.start(port)
 
 
@@ -29,8 +31,11 @@ def request_calculation(operation, args, port):
 @click.option('-n', '--name')
 @click.option('-p', '--port', default=5000)
 def connect_client(name, port):
-    calculations = rpc_api.get_task(name, port)
-    model.execute(calculations)
+    task = rpc_api.get_task(name, port)
+    if task.work:
+        model.execute(task)
+    else:
+        logging.info("There's no task to be done, go get some rest!")
 
 
 cli = click.CommandCollection(sources=[main])

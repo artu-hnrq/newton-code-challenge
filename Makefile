@@ -1,4 +1,5 @@
 s start_server:
+	rm -f newton.db
 	newton start-server
 
 k connect_client:

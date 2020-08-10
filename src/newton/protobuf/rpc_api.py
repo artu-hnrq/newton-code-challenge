@@ -29,4 +29,4 @@ def get_task(name, port):
             name=name
         )
     )
-    return task.work
+    return task

@@ -1,4 +1,5 @@
 import logging
+from uuid import uuid4
 from .calculate_pb2 import Task, Response
 from .calculate_pb2_grpc import TaskManagerServicer as Servicer
 
@@ -20,6 +21,7 @@ class TaskManagerServicer(Servicer):
         logging.info(f"{client.name} requested a task")
 
         task = Task()
+        task.id = uuid4().hex
         if len(self.tasklist) > 0:
             task.work.append(self.tasklist.pop(0))
 
