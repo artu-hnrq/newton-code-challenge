@@ -8,13 +8,19 @@ I worked in this project to demonstrate skills in developing backends with Pytho
 
 The proposal was develop a system consisting in a _server_ and multiple _clients_. The server should receive requests and queue them, allowing clients to connect with it and get them to be executed.
 
+[newton_labs]: https://www.linkedin.com/company/newton-ai/
+[grpc]: https://github.com/grpc/grpc
+[gRPC]: https://en.wikipedia.org/wiki/GRPC
+[protobuf]: https://pt.wikipedia.org/wiki/Protocol_Buffers
+[PyPI]: https://pypi.org/project/newton-code-challenge
+
 ## Getting started
 To take advantage of all develop and distribution convenience, it was made a python package, thus it can be easily installed from [PyPI][PyPI] running:
 ```
 pip install newton-code-challenge
 ```
 
-## CLI Usage
+## CLI usage
 The package exposes `newton` command line interface, which brings the following subcommands:
 
 `start-server`: It starts project's gRPC server
@@ -23,11 +29,6 @@ The package exposes `newton` command line interface, which brings the following 
 
 `conncet-client`: It gets server's next task and execute it
 
-[newton_labs]: https://www.linkedin.com/company/newton-ai/
-[grpc]: https://github.com/grpc/grpc
-[gRPC]: https://en.wikipedia.org/wiki/GRPC
-[protobuf]: https://pt.wikipedia.org/wiki/Protocol_Buffers
-[PyPI]: https://pypi.org/project/newton-code-challenge
 
 
 ### Some used references
