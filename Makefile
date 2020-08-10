@@ -2,7 +2,7 @@ s start_server:
 	newton start-server
 
 k connect_client:
-	newton connect-client -n steve
+	newton connect-client -n artu-hnrq
 
 r request_calculation:
 	newton request-calculation add 5 6
@@ -16,8 +16,11 @@ p present_db:
 e example:
 	bash -i src/example.sh
 
-protobuf= src/newton/protobuf
+t test:
+	python3 setup.py test
 
+
+protobuf = src/newton/protobuf
 b build:
 	python3 -m grpc_tools.protoc -I=src \
 		--python_out=$(protobuf) \
@@ -30,10 +33,10 @@ i init:
 	. venv/bin/activate
 	python3 -m pip install -Ur requirements.txt
 
-I install:
+I install: dist
 	pip install .
 
-D develop:
+D develop: dist
 	pip install -e .[dev]
 
 

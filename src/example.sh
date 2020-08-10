@@ -1,4 +1,5 @@
 #!/bin/bash
+# Be sure to have a server listening the port 4444
 
 newton request-calculation add 10 36 -p 4444
 newton request-calculation sub 20 12 -p 4444

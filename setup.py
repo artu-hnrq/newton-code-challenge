@@ -1,9 +1,6 @@
 #!/usr/bin/python3
 import setuptools
 
-from os import path
-dirname = path.abspath(path.dirname(__file__))
-
 with open('README.md') as f:
     long_description = f.read()
 
@@ -13,7 +10,7 @@ with open('requirements.txt') as f:
 
 setuptools.setup(
     name = 'newton-code-challenge',
-    version = '0.9.3',
+    version = '0.9.4',
     author = 'artu-hnrq',
     author_email = "Arthur Henrique Della Fraga <Arthur.Henrique.Della.Fraga@gmail.com>",
     url = "https://github.com/artu-hnrq/newton-code-challenge",
@@ -40,5 +37,7 @@ setuptools.setup(
         "console_scripts": [
             "newton = newton:main",
         ],
-    }
+    },
+
+    test_suite='test.suite',
 )

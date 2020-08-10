@@ -1,8 +1,6 @@
 from .protobuf import server, rpc_api
-from . import model
-from . import dbms
-import logging
-import click
+from . import model, dbms
+import click, logging
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 DEFAULT_PORT = 5000
@@ -19,7 +17,7 @@ def start_server(port):
     try:
         dbms.create_table(port)
         server.start(port)
-    except Exception e:
+    except Exception as e:
         logging.critical(f"Something went wrong: {e}")
 
 
